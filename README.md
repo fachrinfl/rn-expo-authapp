@@ -2,7 +2,7 @@
 
 AuthApp is a React Native-based application designed to provide authentication features, utilizing libraries such as Formik, Redux Toolkit, and Yup for form handling, state management, and validation respectively. The project leverages Expo for development and testing.
 
-<img src="https://github.com/user-attachments/assets/b1aaf3dc-925e-4dec-9cfc-1b2ac0caf98c" alt="Home Screen" width="200" />
+<img src="https://github.com/user-attachments/assets/601d2d4c-064c-4824-a1a4-2dcd2ad29fdf" alt="Home Screen" width="200" />
 
 ---
 
@@ -70,9 +70,9 @@ Ensure the following tools are installed:
 ### Development Dependencies
 
 - **Jest**: Version `^29.7.0`
-- **@testing-library/react-native**: Version `^13.0.1`
-- **ESLint**: Version `^8.57.0`
-- **Prettier**: Version `^3.4.2`
+- **@testing-library/react-native**: Version `^13.0.0`
+- **ESLint**: Version `^8.57.1`
+- **Prettier**: Version `^2.8.8`
 - **TypeScript**: Version `^5.3.3`
 
 ---
