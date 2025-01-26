@@ -42,7 +42,11 @@ jobs:
       - name: 🚀 Get Artifact URL and Upload to TestFairy
         run: |
           ARTIFACT_URL=$(eas build:list --platform android --status finished --limit 1 --json --non-interactive | jq -r '.[0].artifacts.buildUrl')
-          curl -F "file=@-" \
-               -F "api_key=${{ secrets.TESTFAIRY_API_KEY }}" \
-               https://upload.testfairy.com/api/upload \
-               --data-binary @<(curl -s $ARTIFACT_URL)
+
+          echo "Downloading artifact from $ARTIFACT_URL..."
+          curl -L $ARTIFACT_URL -o app-release.aab
+
+          echo "Uploading to TestFairy..."
+          curl -F "file=@app-release.aab" \
+              -F "api_key=${{ secrets.TESTFAIRY_API_KEY }}" \
+              https://upload.testfairy.com/api/upload
