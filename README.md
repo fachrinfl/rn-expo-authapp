@@ -142,6 +142,18 @@ jobs:
           eas build --platform android --non-interactive
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+      - name: 🚀 Get Artifact URL and Upload to TestFairy
+        run: |
+          ARTIFACT_URL=$(eas build:list --platform android --status finished --limit 1 --json --non-interactive | jq -r '.[0].artifacts.buildUrl')
+
+          echo "Downloading artifact from $ARTIFACT_URL..."
+          curl -L $ARTIFACT_URL -o app-release.aab
+
+          echo "Uploading to TestFairy..."
+          curl -F "file=@app-release.aab" \
+              -F "api_key=${{ secrets.TESTFAIRY_API_KEY }}" \
+              https://upload.testfairy.com/api/upload
 ```
 
 ### Environment Variables
@@ -152,5 +164,6 @@ Set the following environment variables in your GitHub repository:
 2. Add the following secret:
 
    - `EXPO_TOKEN`: Your Expo token for authentication.
+   - `TESTFAIRY_API_KEY`: API key untuk TestFairy.
 
 ---
